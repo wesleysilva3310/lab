@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-28T22:21:16.491Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="o0d-ycqCdqSOxZVzsH1N" version="15.8.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-28T22:22:24.857Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="b1Jx3IIWrkccKDxMKjcw" version="15.8.6" type="github">
   <diagram id="z5rGznuba-PtW8SU3dXK" name="Page-1">
     <mxGraphModel dx="1422" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
       <root>
@@ -33,8 +33,14 @@
         <mxCell id="jL6jd2JfHJ7tAKCCUWy6-8" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.virtual_machine;" parent="1" vertex="1">
           <mxGeometry x="1375" y="520" width="110" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="kYGF-sDnhBKtGnx4Ma22-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jL6jd2JfHJ7tAKCCUWy6-9" target="jL6jd2JfHJ7tAKCCUWy6-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="jL6jd2JfHJ7tAKCCUWy6-9" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/font-awesome-brands-vol-1/512/jenkins-128.png" parent="1" vertex="1">
           <mxGeometry x="1410" y="340" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kYGF-sDnhBKtGnx4Ma22-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jL6jd2JfHJ7tAKCCUWy6-17" target="jL6jd2JfHJ7tAKCCUWy6-1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="jL6jd2JfHJ7tAKCCUWy6-17" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/socialcones/508/Gitlab-128.png" parent="1" vertex="1">
           <mxGeometry x="1000" y="320" width="128" height="128" as="geometry" />
@@ -47,6 +53,24 @@
         </mxCell>
         <mxCell id="kYGF-sDnhBKtGnx4Ma22-2" value="Graylog" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="1070" y="640" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kYGF-sDnhBKtGnx4Ma22-10" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.99;exitY=0.01;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="jL6jd2JfHJ7tAKCCUWy6-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1140" y="430" as="sourcePoint" />
+            <mxPoint x="1190" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kYGF-sDnhBKtGnx4Ma22-11" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.583;exitY=-0.037;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="jL6jd2JfHJ7tAKCCUWy6-7" target="jL6jd2JfHJ7tAKCCUWy6-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1240.0000000000002" y="520" as="sourcePoint" />
+            <mxPoint x="1321.2" y="379.2" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kYGF-sDnhBKtGnx4Ma22-12" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="jL6jd2JfHJ7tAKCCUWy6-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1370" y="520" as="sourcePoint" />
+            <mxPoint x="1386.2" y="400" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
