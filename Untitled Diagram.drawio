@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-28T22:52:12.946Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="hPs8kE7jsbMb9lm4SZsk" version="15.8.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-28T22:52:58.345Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="CZ9y2231eBe_uhNdeNS_" version="15.8.6" type="github">
   <diagram id="z5rGznuba-PtW8SU3dXK" name="Page-1">
     <mxGraphModel dx="1422" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
       <root>
@@ -252,6 +252,9 @@
             <mxPoint x="1318.59" y="584.89" as="sourcePoint" />
             <mxPoint x="1309.9950000000001" y="515.11" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="kYGF-sDnhBKtGnx4Ma22-74" value="&lt;b&gt;&lt;font style=&quot;font-size: 22px&quot;&gt;DevOps LAB&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1265" y="160" width="150" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
