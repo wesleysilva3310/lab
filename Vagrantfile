@@ -48,7 +48,7 @@ end
 #Rundeck
   config.ssh.insert_key = false
   config.vm.define "rundeck" do |rundeck|
-  rundeck.vm.box = "ubuntu/focal64"
+  rundeck.vm.box = "wesleysilva3310/rundeck"
   rundeck.vm.network "public_network", ip: "192.168.1.15"
   rundeck.vm.hostname = "Rundeck"
   rundeck.vm.provision "shell", path: "install.sh"
