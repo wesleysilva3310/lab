@@ -12,7 +12,7 @@ end
   gitlab.vm.network "forwarded_port", guest: 80, host: 80
   gitlab.vm.network "forwarded_port", guest: 443, host: 443
   gitlab.vm.network "forwarded_port", guest: 2222, host: 2222
-  gitlab.vm.provision "shell", path: "/home/wesley/Documents/Estudo/vagrant/install.sh"
+  gitlab.vm.provision "shell", path: "install.sh"
   gitlab.vm.provision "shell", path: "deployGitlab.sh"
 end
 #Graylog
@@ -21,7 +21,7 @@ end
   graylog.vm.box = "ubuntu/focal64"
   graylog.vm.network "public_network", ip: "192.168.1.11"
   graylog.vm.hostname = "Graylog"
-  graylog.vm.provision "shell", path: "/home/wesley/Documents/Estudo/vagrant/install.sh"
+  graylog.vm.provision "shell", path: "install.sh"
 end
  #Jenkins Server
   config.ssh.insert_key = false
@@ -29,8 +29,8 @@ end
   jenkins.vm.box = "ubuntu/focal64"
   jenkins.vm.network "public_network", ip: "192.168.1.12"
   jenkins.vm.hostname = "Jenkins"
-  jenkins.vm.provision "shell", path: "/home/wesley/Documents/Estudo/vagrant/install.sh"
-  jenkins.vm.network "forwarded_port", guest: 8080, host: 8080
+  jenkins.vm.provision "shell", path: "install.sh"
+  jenkins.vm.network "forwarded_port", guest: 8080, host: 8081
   jenkins.vm.network "forwarded_port", guest: 50000, host: 50000
   jenkins.vm.network "forwarded_port", guest: 443, host: 444
 end
@@ -40,9 +40,22 @@ end
   zabbix.vm.box = "ubuntu/focal64"
   zabbix.vm.network "public_network", ip: "192.168.1.13"
   zabbix.vm.hostname = "Zabbix"
-  zabbix.vm.provision "shell", path: "/home/wesley/Documents/Estudo/vagrant/install.sh"
-  zabbix.vm.network "forwarded_port", guest: 8080, host: 8080
-  zabbix.vm.network "forwarded_port", guest: 50000, host: 50000
-  zabbix.vm.network "forwarded_port", guest: 443, host: 444
+  zabbix.vm.provision "shell", path: "install.sh"
+  zabbix.vm.network "forwarded_port", guest: 8080, host: 8082
+  zabbix.vm.network "forwarded_port", guest: 50000, host: 50001
+  zabbix.vm.network "forwarded_port", guest: 443, host: 445
+end
+#Rundeck
+  config.ssh.insert_key = false
+  config.vm.define "rundeck" do |rundeck|
+  rundeck.vm.box = "ubuntu/focal64"
+  rundeck.vm.network "public_network", ip: "192.168.1.15"
+  rundeck.vm.hostname = "Rundeck"
+  rundeck.vm.provision "shell", path: "install.sh"
+  rundeck.vm.network "forwarded_port", guest: 4440, host: 4440
+  rundeck.vm.provider :virtualbox do |rundecksetup|
+  rundecksetup.memory = 5000
+  rundecksetup.cpus = 2
+end
 end
 end
