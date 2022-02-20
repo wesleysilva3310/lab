@@ -3,6 +3,9 @@
 ## Atualizar o linux
 sudo apt update -y && sudo apt upgrade -y
 
+#Instalar sshpass
+sudo apt-get install sshpass -y
+
 ## Instalar o docker
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

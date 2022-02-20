@@ -1,0 +1,12 @@
+Log created: 2022-02-19T00:12:57.589280000Z
+Process ID:  139185 (0x21fb1)
+Parent PID:  1 (0x1)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: lab_slave1_1645212603959_10842
+Arg[3]: --startvm
+Arg[4]: 0164307e-d2d2-4dcc-acc1-4d598208eafe
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
