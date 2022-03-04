@@ -35,9 +35,8 @@ end
 end
   gitlab.vm.network "forwarded_port", guest: 80, host: 80
   gitlab.vm.network "forwarded_port", guest: 443, host: 443
-  gitlab.vm.network "forwarded_port", guest: 2222, host: 2222
+  gitlab.vm.network "forwarded_port", guest: 2224, host: 2224
   gitlab.vm.provision "shell", path: "setup.sh"
-  gitlab.vm.provision "shell", path: "deployGitlab.sh"
 end
 #Graylog
   config.ssh.insert_key = false
@@ -61,13 +60,16 @@ end
 #Zabbix Server
   config.ssh.insert_key = false
   config.vm.define "zabbix" do |zabbix|
-  zabbix.vm.box = "ubuntu/focal64"
+  zabbix.vm.box = "wesleysilva3310/zabbix"
   zabbix.vm.network "public_network", ip: "192.168.1.13"
   zabbix.vm.hostname = "zabbix"
   zabbix.vm.provision "shell", path: "setup.sh"
   zabbix.vm.network "forwarded_port", guest: 8080, host: 8082
   zabbix.vm.network "forwarded_port", guest: 50000, host: 50001
   zabbix.vm.network "forwarded_port", guest: 443, host: 445
+  zabbix.vm.provider :virtualbox do |zabbixsetup|
+  zabbixsetup.memory = 2048
+end
 end
 #Rundeck
   config.ssh.insert_key = false
