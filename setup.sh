@@ -37,6 +37,9 @@ do
 done < $file.old > $file
 systemctl restart sshd
 
+#Adicionar o endereço do gitlab no hosts
+sudo echo "#gitlab" >> /etc/hosts
+sudo echo 192.168.1.10     gitlab.weslao.com >> /etc/hosts
 #Instalar, configurar o zabbix agent e habilitar no boot
 sudo wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu$(lsb_release -rs)_all.deb && \
 sudo dpkg -i zabbix-release_6.0-1+ubuntu$(lsb_release -rs)_all.deb && \
