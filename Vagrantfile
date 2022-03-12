@@ -1,28 +1,65 @@
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
 Vagrant.configure("2") do |config|
-#k8sMaster
-  config.ssh.insert_key = false
-  config.vm.define "master" do |master|
-  master.vm.box = "ubuntu/focal64"
-  master.vm.network "public_network", ip: "192.168.1.16"
-  master.vm.hostname = "master"
-  master.vm.provision "shell", path: "setup.sh"
-end
-#k8sSlave1
-  config.ssh.insert_key = false
-  config.vm.define "slave1" do |slave1|
-  slave1.vm.box = "ubuntu/focal64"
-  slave1.vm.network "public_network", ip: "192.168.1.17"
-  slave1.vm.hostname = "slave1"
-  slave1.vm.provision "shell", path: "setup.sh"
-end
+
+  # Kubernetes Master Server
+  config.vm.define "kmaster" do |node|
+  
+    node.vm.box               = "generic/ubuntu2004"
+    node.vm.box_check_update  = false
+    node.vm.box_version       = "3.3.0"
+    node.vm.hostname          = "kmaster"
+
+    node.vm.network "public_network", ip: "192.168.1.100"
+  
+    node.vm.provider :virtualbox do |v|
+      v.name    = "kmaster"
+      v.memory  = 4048
+      v.cpus    =  2
+    end
+    node.vm.provision "shell", path: "setup.sh"
+  
+  end
+
+  # Kubernetes Worker Nodes
+  NodeCount = 2
+
+  (1..NodeCount).each do |i|
+
+    config.vm.define "kworker#{i}" do |node|
+
+      node.vm.box               = "generic/ubuntu2004"
+      node.vm.box_check_update  = false
+      node.vm.box_version       = "3.3.0"
+      node.vm.hostname          = "kworker#{i}"
+
+      node.vm.network "public_network", ip: "192.168.1.10#{i}"
+
+      node.vm.provider :virtualbox do |v|
+        v.name    = "kworker#{i}"
+        v.memory  = 4024
+        v.cpus    = 1
+      end
+      node.vm.provision "shell", path: "setup.sh"
+    end
+
+  end
+##k8sSlave1
+#  config.ssh.insert_key = false
+#  config.vm.define "slave1" do |slave1|
+#  slave1.vm.box = "ubuntu/focal64"
+#  slave1.vm.network "public_network", ip: "192.168.1.17"
+#  slave1.vm.hostname = "slave1"
+#  slave1.vm.provision "shell", path: "setup.sh"
+#end
 #k8sSlave2
-  config.ssh.insert_key = false
-  config.vm.define "slave2" do |slave2|
-  slave2.vm.box = "ubuntu/focal64"
-  slave2.vm.network "public_network", ip: "192.168.1.18"
-  slave2.vm.hostname = "slave2"
-  slave2.vm.provision "shell", path: "setup.sh"
-end
+#  config.ssh.insert_key = false
+#  config.vm.define "slave2" do |slave2|
+#  slave2.vm.box = "ubuntu/focal64"
+#  slave2.vm.network "public_network", ip: "192.168.1.18"
+#  slave2.vm.hostname = "slave2"
+#  slave2.vm.provision "shell", path: "setup.sh"
+#end
 #Gitlab
   config.ssh.insert_key = false
   config.vm.define "gitlab" do |gitlab|
