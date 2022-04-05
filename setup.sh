@@ -72,6 +72,7 @@ EOF
 sudo mv zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
 sudo systemctl restart zabbix-agent.service
 sudo systemctl enable zabbix-agent.service
+sudo rm -f zabbix-release_6.0-1+ubuntu20.04_all.deb
 echo "Configuration complete!"
 
 # Installing ansible on kmaster vm
@@ -251,4 +252,43 @@ sudo curl \
     -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose \
     -o /etc/bash_completion.d/docker-compose
 echo "Installation Complete!"
+fi
+
+# Install Jenkins
+if
+        [ "$HOSTNAME" = jenkins ];
+then
+
+mkdir jenkins && cd jenkins
+cat > docker-compose.yml << EOF
+version: "3.9"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins-server
+    privileged: true
+    hostname: jenkinsserver
+    user: root
+    labels:
+      com.example.description: "Jenkins-Server by DigitalAvenue.dev"
+    ports: 
+      - "8080:8080"
+      - "50000:50000"
+    networks:
+      jenkins-net:
+        aliases: 
+          - jenkins-net
+    volumes: 
+     - jenkins-data:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+     
+volumes: 
+  jenkins-data:
+
+networks:
+  jenkins-net:
+EOF
+
+docker-compose up -d
 fi
