@@ -75,6 +75,11 @@ end
 
     graylog.vm.network "public_network", ip: "192.168.1.11"
 
+    graylog.vm.provider :virtualbox do |graylogsetup|
+      graylogsetup.memory = 3068
+      graylogsetup.cpus = 4
+      end
+
     graylog.vm.provision "shell", path: "setup.sh"
 end
 
