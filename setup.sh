@@ -292,3 +292,27 @@ EOF
 
 docker-compose up -d
 fi
+
+# Install Grafana
+if
+        [ "$HOSTNAME" = grafana ];
+then
+mkdir grafana && cd grafana
+cat > docker-compose.yml << EOF
+version: "3.5"
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    network_mode: "bridge"
+    container_name: grafana
+    volumes:
+      - ~/grafana/data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    restart: always
+        #first login: admin:admin
+EOF
+docker-compose up -d && echo "Grafana up!"
+sudo chown 472:472 ~/grafana/data
+fi

@@ -78,6 +78,19 @@ end
     graylog.vm.provision "shell", path: "setup.sh"
 end
 
+# Grafana
+config.ssh.insert_key = false
+
+config.vm.define "grafana" do |grafana|
+
+  grafana.vm.box              = "ubuntu/focal64"
+  grafana.vm.hostname         = "grafana"
+
+  grafana.vm.network "public_network", ip: "192.168.1.17"
+
+  grafana.vm.provision "shell", path: "setup.sh"
+end
+
 # Jenkins Server
   config.ssh.insert_key = false
 
