@@ -62,6 +62,7 @@ Vagrant.configure("2") do |config|
     gitlab.vm.network "forwarded_port", guest: 80, host: 80
     gitlab.vm.network "forwarded_port", guest: 443, host: 443
     gitlab.vm.network "forwarded_port", guest: 2224, host: 2224
+    gitlab.vm.network "forwarded_port", guest: 5050, host: 5050
     gitlab.vm.provision "shell", path: "setup.sh"
 end
 
