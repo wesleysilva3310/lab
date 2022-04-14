@@ -2,6 +2,18 @@ ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 Vagrant.configure("2") do |config|
 
+  # DNS Server
+  config.vm.define "dnsserver" do |dns|
+  
+    dns.vm.box               = "generic/ubuntu2004"
+    dns.vm.box_check_update  = false
+    dns.vm.box_version       = "3.3.0"
+    dns.vm.hostname          = "dnsserver"
+
+    dns.vm.network "public_network", ip: "192.168.1.105"
+    dns.vm.provision "shell", path: "setup.sh"
+  end
+
   # Kubernetes Master Server
   config.vm.define "kmaster" do |node|
   
