@@ -49,9 +49,37 @@ done < $file.old > $file
 systemctl restart sshd
 echo "Configuration complete!"
 
-# Adding gitlab url on hosts
+#installing dnsmasq on dns server
+
+
+
+# Adding hosts to dns server
+if [ "$HOSTNAME" = dnsserver ];
+then
+sudo systemctl disable systemd-resolved
+sudo systemctl stop systemd-resolved
+sudo unlink /etc/resolv.conf
+echo nameserver 8.8.8.8 | sudo tee /etc/resolv.conf
+sudo apt install dnsmasq
+sudo systemctl restart dnsmasq
 sudo cat >>/etc/hosts<<EOF
 192.168.1.10     gitlab.weslao.com
+192.168.1.10     gitlab
+192.168.1.100    kmaster
+192.168.1.105    dnsserver
+192.168.1.101    kworker1
+192.168.1.102    kworker2
+192.168.1.11     graylog
+192.168.1.17     grafana
+192.168.1.12     jenkins
+192.168.1.13     zabbix
+192.168.1.15     rundeck
+EOF
+fi
+
+#Adding dns server to resolv.conf
+sudo cat >>/etc/resolv.conf<<EOF
+nameserver 192.168.1.105
 EOF
 
 # Installing and configuring zabbix agent
