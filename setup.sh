@@ -74,6 +74,7 @@ sudo cat >>/etc/hosts<<EOF
 192.168.1.12     jenkins
 192.168.1.13     zabbix
 192.168.1.15     rundeck
+192.168.1.20     kafka
 EOF
 fi
 
@@ -409,3 +410,48 @@ networks:
 EOF
 docker-compose up -d && echo "graylog up!"
 fi
+
+#Adding Prometheus exporter
+
+groupadd --system prometheus && echo "Group created."
+useradd -s /sbin/nologin --system -g prometheus prometheus && echo "User created."
+mkdir /var/lib/node && cd /var/lib/node/
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+
+tar xvf node_exporter-1.3.1.linux-amd64.tar.gz
+
+cd node_exporter-1.3.1.linux-amd64
+
+mv node_exporter ..
+
+cat > /etc/systemd/system/node.service <<EOF
+[Unit]
+Description=Prometheus Node Exporter
+Documentation=https://prometheus.io/docs/introduction/overview/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/var/lib/node/node_exporter
+
+SyslogIdentifier=prometheus_node_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+chown -R prometheus:prometheus /var/lib/node
+chown -R prometheus:prometheus /var/lib/node/*
+chmod -R 775 /var/lib/node
+chmod -R 775 /var/lib/node/*
+systemctl daemon-reload
+systemctl enable node
+systemctl start node
+rm -Rf node_exporter-1.3.1.linux-amd64 node_exporter-1.3.1.linux-amd64.tar.gz
+echo "Exporter installed as a service."

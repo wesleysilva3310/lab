@@ -96,6 +96,38 @@ end
     graylog.vm.provision "shell", path: "setup.sh"
 end
 
+# Kafka
+config.ssh.insert_key = false
+
+config.vm.define "kafka" do |kafka|
+
+  kafka.vm.box              = "ubuntu/focal64"
+  kafka.vm.hostname         = "kafka"
+
+  kafka.vm.network "public_network", ip: "192.168.1.20"
+
+  kafka.vm.provider :virtualbox do |kafkasetup|
+    kafkasetup.memory = 3068
+    kafkasetup.cpus = 4
+    end
+
+  kafka.vm.provision "shell", path: "setup.sh"
+end
+
+# Prometheus
+config.ssh.insert_key = false
+
+config.vm.define "prometheus" do |prometheus|
+
+  prometheus.vm.box              = "ubuntu/focal64"
+  prometheus.vm.hostname         = "prometheus"
+
+  prometheus.vm.network "public_network", ip: "192.168.1.21"
+  prometheus.vm.network "forwarded_port", guest: 9090, host: 9090
+
+  prometheus.vm.provision "shell", path: "setup.sh"
+end
+
 # Grafana
 config.ssh.insert_key = false
 
