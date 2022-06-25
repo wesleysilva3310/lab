@@ -49,11 +49,8 @@ done < $file.old > $file
 systemctl restart sshd
 echo "Configuration complete!"
 
-#installing dnsmasq on dns server
 
-
-
-# Adding hosts to dns server
+# Configuring dns server
 if [ "$HOSTNAME" = dnsserver ];
 then
 sudo systemctl disable systemd-resolved
@@ -110,6 +107,18 @@ if
 then
         echo "Installing ansible on kmaster VM"
         sudo apt install ansible -y
+        echo "Installation complete!"
+fi
+
+# installing helm on kmaster vm
+if
+        [ "$HOSTNAME" = kmaster ];
+then
+        echo "Installing helm on kmaster VM"
+        wget https://get.helm.sh/helm-v3.9.0-linux-amd64.tar.gz
+        tar -zxvf helm-v3.9.0-linux-amd64.tar.gz
+        mv linux-amd64/helm /usr/local/bin/helm
+        rm -Rf helm-v3.9.0-linux-amd64.tar.gz linux-amd64
         echo "Installation complete!"
 fi
 
