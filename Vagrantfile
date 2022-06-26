@@ -78,22 +78,22 @@ Vagrant.configure("2") do |config|
     gitlab.vm.provision "shell", path: "setup.sh"
 end
 
-# Graylog
+# EFK
   config.ssh.insert_key = false
 
-  config.vm.define "graylog" do |graylog|
+  config.vm.define "efk" do |efk|
 
-    graylog.vm.box              = "ubuntu/focal64"
-    graylog.vm.hostname         = "graylog"
+    efk.vm.box              = "ubuntu/focal64"
+    efk.vm.hostname         = "efk"
 
-    graylog.vm.network "public_network", ip: "192.168.1.11"
+    efk.vm.network "public_network", ip: "192.168.1.11"
 
-    graylog.vm.provider :virtualbox do |graylogsetup|
-      graylogsetup.memory = 3068
-      graylogsetup.cpus = 4
+    efk.vm.provider :virtualbox do |efksetup|
+      efksetup.memory = 3068
+      efksetup.cpus = 4
       end
 
-    graylog.vm.provision "shell", path: "setup.sh"
+    efk.vm.provision "shell", path: "setup.sh"
 end
 
 # Grafana / Prometheus / Alertmanager
