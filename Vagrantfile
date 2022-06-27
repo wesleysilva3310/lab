@@ -89,7 +89,7 @@ end
     efk.vm.network "public_network", ip: "192.168.1.11"
 
     efk.vm.provider :virtualbox do |efksetup|
-      efksetup.memory = 3068
+      efksetup.memory = 5068
       efksetup.cpus = 4
       end
 
@@ -107,6 +107,19 @@ config.vm.define "grafana" do |grafana|
   grafana.vm.network "public_network", ip: "192.168.1.17"
 
   grafana.vm.provision "shell", path: "setup.sh"
+end
+
+# Vault
+config.ssh.insert_key = false
+
+config.vm.define "vault" do |vault|
+
+  vault.vm.box              = "ubuntu/focal64"
+  vault.vm.hostname         = "vault"
+
+  vault.vm.network "public_network", ip: "192.168.1.19"
+
+  vault.vm.provision "shell", path: "setup.sh"
 end
 
 # Jenkins Server
